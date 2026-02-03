@@ -74,14 +74,25 @@ body {
     z-index: 100;
 }
 
+/* Letter Window Frame
+ * The window.png background has a decorative frame at the top
+ * Content should start below the frame border
+ * padding-top pushes content into the visible window area
+ */
 .letter-window {
     width: 90vw;
     max-width: 800px;
     aspect-ratio: 3/2;
     padding: 2rem;
+    padding-top: clamp(
+        120px,
+        20vh,
+        180px
+    ); /* Default offset for window frame */
+    padding-bottom: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     text-align: center;
     background-image: url("assets/img/window.png");
@@ -106,8 +117,16 @@ body {
 h1 {
     font-size: clamp(1.5rem, 4vw, 2rem);
     margin: 0;
+    margin-bottom: 0.75rem; /* Space before cat image */
     color: var(--text-color);
-    line-height: 1.2;
+    line-height: 1.3;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.6rem;
+    flex-shrink: 0;
 }
 
 /* Cat Image */
@@ -115,12 +134,7 @@ h1 {
     width: clamp(150px, 30vw, 250px);
     height: auto;
     margin: 0.5rem 0;
-    transition: width 0.4s ease;
     image-rendering: -webkit-optimize-contrast;
-}
-
-.letter-window.final .cat {
-    width: clamp(120px, 25vw, 180px);
 }
 
 /* Buttons */
@@ -165,23 +179,44 @@ h1 {
     cursor: default;
 }
 
-/* Final Text */
+/* Final Text - replaces buttons, uses same spacing */
 .final-text {
     font-size: clamp(1rem, 3vw, 1.375rem);
     line-height: 1.6;
     text-align: center;
-    display: inline-block;
+    display: block;
     padding: 1rem 1.5rem;
     background-color: rgba(255, 240, 240, 0.8);
     border-radius: 12px;
     color: var(--text-color);
     max-width: 90%;
     word-wrap: break-word;
+    margin: 0 auto;
 }
 
 .final-text strong {
     display: block;
     margin-bottom: 0.5rem;
+}
+
+/* Desktop/Large Display Styles */
+@media (min-width: 769px) {
+    .letter-window {
+        padding-top: clamp(150px, 24vh, 210px); /* Desktop - push text lower */
+        gap: 1.5rem;
+    }
+
+    h1 {
+        margin-bottom: 1rem;
+    }
+
+    .cat {
+        width: clamp(180px, 25vw, 250px);
+    }
+
+    .buttons {
+        gap: 2.5rem;
+    }
 }
 
 /* Tablet Styles */
@@ -190,13 +225,22 @@ h1 {
         background-attachment: scroll;
     }
 
+    /* Adjust window frame offset for tablet screens */
     .letter-window {
         width: 95vw;
         padding: 1.5rem 1rem;
+        padding-top: clamp(140px, 24vh, 200px); /* Tablet window frame offset */
+        padding-bottom: 2rem;
+        justify-content: space-evenly;
+        gap: 1rem;
     }
 
     h1 {
         font-size: clamp(1.25rem, 5vw, 1.75rem);
+        margin: 0;
+        padding: 0;
+        margin-bottom: 0.5rem;
+        min-height: 2.2rem;
     }
 
     .buttons {
@@ -231,27 +275,32 @@ h1 {
         max-width: 100%;
         aspect-ratio: 3/4;
         padding: 1rem;
-        padding-top: clamp(100px, 25vh, 150px);
+        padding-top: clamp(160px, 35vh, 200px);
+        padding-bottom: 2rem;
         gap: 0.75rem;
+        justify-content: space-between;
     }
 
+    /* Title sized for mobile readability */
     h1 {
-        font-size: clamp(1rem, 5vw, 1.5rem);
-        padding: 0 0.5rem;
+        font-size: clamp(1.125rem, 5.5vw, 1.5rem);
+        margin: 0;
+        padding: 0 0.75rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.25;
+        min-height: 2rem;
     }
 
     .cat {
-        width: clamp(100px, 30vw, 150px);
-        max-width: 60%;
-    }
-
-    .letter-window.final .cat {
-        width: clamp(80px, 25vw, 120px);
+        width: clamp(110px, 32vw, 160px);
+        max-width: 65%;
+        flex-shrink: 0;
     }
 
     .buttons {
-        gap: 1rem;
-        min-height: 60px;
+        gap: 1.5rem;
+        min-height: 70px;
+        flex-shrink: 0;
     }
 
     .btn {
@@ -265,18 +314,58 @@ h1 {
     }
 }
 
-/* Small Mobile Styles */
-@media (max-width: 360px) {
+/* Large Mobile Screens (iPhone 14 Pro Max, etc.) */
+@media (min-width: 400px) and (max-width: 480px) and (min-height: 800px) {
     .letter-window {
-        padding-top: clamp(80px, 20vh, 120px);
+        padding-top: clamp(170px, 36vh, 210px);
+        padding-bottom: 3rem;
+        justify-content: space-evenly;
+        gap: 1.25rem;
     }
 
     h1 {
-        font-size: 1rem;
+        font-size: clamp(1.25rem, 5vw, 1.625rem);
+        margin: 0;
+        padding: 0 0.75rem;
+        margin-bottom: 0.75rem;
+        min-height: 2.1rem;
     }
 
     .cat {
-        width: 90px;
+        width: clamp(130px, 30vw, 170px);
+        flex-shrink: 0;
+    }
+
+    .buttons {
+        gap: 1.75rem;
+        flex-shrink: 0;
+    }
+}
+
+/* Small Mobile Styles (320px-360px) */
+@media (max-width: 360px) {
+    /* Compact layout for very small screens */
+    .letter-window {
+        padding-top: clamp(
+            130px,
+            30vh,
+            170px
+        ); /* Reduced offset for small screens */
+        padding-bottom: 2rem;
+        justify-content: space-evenly;
+        gap: 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.125rem;
+        margin: 0;
+        padding: 0 0.5rem;
+        margin-bottom: 0.5rem;
+        min-height: 1.8rem;
+    }
+
+    .cat {
+        width: clamp(90px, 28vw, 120px);
     }
 
     .buttons {
@@ -293,7 +382,7 @@ h1 {
     }
 }
 
-/* Landscape Mobile */
+/* Landscape Mobile - horizontal phone orientation */
 @media (max-height: 500px) and (orientation: landscape) {
     body {
         align-items: flex-start;
@@ -305,22 +394,33 @@ h1 {
         padding-top: 1rem;
     }
 
+    /* Wide window layout for landscape orientation */
     .letter-window {
-        aspect-ratio: 16/9;
+        aspect-ratio: 16/9; /* Wide for landscape */
         max-height: 90vh;
         padding: 1rem;
+        padding-top: clamp(100px, 20vh, 140px); /* Landscape window offset */
+        padding-bottom: 1.5rem;
+        justify-content: space-evenly;
+        gap: 0.5rem;
     }
 
     .cat {
-        width: clamp(80px, 15vw, 120px);
+        width: clamp(90px, 18vw, 130px);
+        flex-shrink: 0;
     }
 
     h1 {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 0.25rem;
+        min-height: 1.5rem;
     }
 
     .buttons {
-        gap: 1rem;
+        gap: 1.25rem;
+        flex-shrink: 0;
     }
 }
 
