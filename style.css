@@ -4,7 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("heart-bg.jpg");
+    background-image: url("assets/img/heart-bg.jpg");
     font-family: "Pixelify Sans", sans-serif;
 }
 
@@ -50,7 +50,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: url("window.png");
+    background-image: url("assets/img/window.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -151,7 +151,7 @@ display: inline-block;
   max-width: 480px;     /* เดิม 420px → ใหญ่ขึ้นนิด */
   aspect-ratio: 3 / 4;
 
-  background-image: url("window.png");
+  background-image: url("assets/img/window.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
