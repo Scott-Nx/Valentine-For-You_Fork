@@ -2,27 +2,86 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="style.css" />
-        <title>Valentine Letter</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="A special Valentine's Day letter for someone special. Will you be my Valentine?"
+        />
+        <meta name="theme-color" content="#ff69b4" />
+        <meta name="author" content="Valentine Letter" />
 
+        <!-- Open Graph / Social Media -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Valentine Letter" />
+        <meta
+            property="og:description"
+            content="A special Valentine's Day letter for someone special"
+        />
+
+        <title>Valentine Letter - Will You Be My Valentine?</title>
+
+        <!-- Preconnect to external resources -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <!-- Preload critical resources -->
         <link
-            href="https://fonts.googleapis.com/css2?family=Aldrich&family=Pixelify+Sans:wght@400..700&display=swap"
+            rel="preload"
+            href="assets/img/envelope.png"
+            as="image"
+            type="image/png"
+        />
+        <link
+            rel="preload"
+            href="assets/img/heart-bg.jpg"
+            as="image"
+            type="image/jpeg"
+        />
+        <link rel="preload" href="style.css" as="style" />
+
+        <!-- Font loading with display swap for better performance -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap"
             rel="stylesheet"
         />
-        <title>Document</title>
+
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="style.css" />
+
+        <!-- PWA Manifest -->
+        <link rel="manifest" href="manifest.json" />
+
+        <!-- Favicon (using data URI to avoid missing favicon warning) -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>"
+        />
     </head>
     <body>
         <!-- Envelope Screen -->
-        <div id="envelope-container">
-            <img src="assets/img/envelope.png" alt="Envelope" id="envelope" />
-            <p>♡ Letter for You ♡</p>
+        <div
+            id="envelope-container"
+            role="button"
+            tabindex="0"
+            aria-label="Click to open Valentine letter"
+        >
+            <img
+                src="assets/img/envelope.png"
+                alt="Pink envelope with hearts"
+                id="envelope"
+                width="200"
+                height="150"
+            />
+            <p aria-label="Letter for You">♡ Letter for You ♡</p>
         </div>
 
         <!-- Letter Screen -->
-        <div id="letter-container">
+        <div
+            id="letter-container"
+            role="dialog"
+            aria-labelledby="letter-title"
+            aria-hidden="true"
+        >
             <div class="letter-window">
                 <h1 id="letter-title">Will you be my Valentine?</h1>
 
@@ -30,29 +89,56 @@
                     src="assets/img/cat_heart.gif"
                     class="cat"
                     id="letter-cat"
+                    alt="Cute pixel art cat with heart"
+                    width="250"
+                    height="250"
+                    loading="lazy"
                 />
 
-                <div class="buttons" id="letter-buttons">
+                <div
+                    class="buttons"
+                    id="letter-buttons"
+                    role="group"
+                    aria-label="Response buttons"
+                >
                     <img
                         src="assets/img/yes.png"
                         class="btn yes-btn"
-                        alt="Yes"
+                        alt="Yes button"
+                        role="button"
+                        tabindex="0"
+                        width="120"
+                        height="60"
+                        loading="lazy"
                     />
 
                     <div class="no-wrapper">
                         <img
                             src="assets/img/no.png"
                             class="btn no-btn"
-                            alt="No"
+                            alt="No button"
+                            role="button"
+                            tabindex="0"
+                            width="120"
+                            height="60"
+                            loading="lazy"
                         />
                     </div>
                 </div>
 
-                <p id="final-text" class="final-text" style="display: none">
+                <p
+                    id="final-text"
+                    class="final-text"
+                    style="display: none"
+                    role="status"
+                    aria-live="polite"
+                >
                     <strong>My message:</strong> I love you the most p.rin ^^
                 </p>
             </div>
         </div>
-        <script src="script.js"></script>
+
+        <!-- Defer JavaScript loading -->
+        <script src="script.js" defer></script>
     </body>
 </html>
