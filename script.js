@@ -12,28 +12,28 @@ const finalText = document.getElementById("final-text");
 // Click Envelope
 
 envelope.addEventListener("click", () => {
-    envelope.style.display = "none";
-    letter.style.display = "flex";
+  envelope.style.display = "none";
+  letter.style.display = "flex";
 
-    setTimeout( () => {
-        document.querySelector(".letter-window").classList.add("open");
-    },50);
+  setTimeout(() => {
+    document.querySelector(".letter-window").classList.add("open");
+  }, 50);
 });
 
 // Logic to move the NO btn
 
 noBtn.addEventListener("mouseover", () => {
-    const min = 200;
-    const max = 200;
+  const min = 200;
+  const max = 200;
 
-    const distance = Math.random() * (max - min) + min;
-    const angle = Math.random() * Math.PI * 2;
+  const distance = Math.random() * (max - min) + min;
+  const angle = Math.random() * Math.PI * 2;
 
-    const moveX = Math.cos(angle) * distance;
-    const moveY = Math.sin(angle) * distance;
+  const moveX = Math.cos(angle) * distance;
+  const moveY = Math.sin(angle) * distance;
 
-    noBtn.style.transition = "transform 0.3s ease";
-    noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  noBtn.style.transition = "transform 0.3s ease";
+  noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
 });
 
 // Logic to make YES btn to grow
@@ -60,13 +60,13 @@ noBtn.addEventListener("mouseover", () => {
 // YES is clicked
 
 yesBtn.addEventListener("click", () => {
-    title.textContent = "Yippeeee!";
+  title.textContent = "Yippeeee!";
 
-    catImg.src = "cat_dance.gif";
+  catImg.src = "cat_dance.gif";
 
-    document.querySelector(".letter-window").classList.add("final");
+  document.querySelector(".letter-window").classList.add("final");
 
-    buttons.style.display = "none";
+  buttons.style.display = "none";
 
-    finalText.style.display = "block";
+  finalText.style.display = "block";
 });
